@@ -297,13 +297,8 @@ GB.choose = function(s) {
             if (toCall <= 0) {
                 // Free to act and ahead: check so weak AI hands stay in. Only bet when an
                 // opponent holds a hand the AI will call big with.
-                if (!s.oppStrong) { return { action: "check", amount: 0 }; }
+                if (!s.oppStrong || s.state == "preflop") { return { action: "check", amount: 0 }; }
                 return { action: "raise", amount: raiseTotal(1.0) };
-            }
-            if (s.raisesThisStreet < 2 && Math.random() < (s.oppStrong ? 0.8 : 0.15)) {
-                var f1 = s.oppStrong ? 1.0 : (river ? 0.6 : 0.4);
-                amt = raiseTotal(f1);
-                if (amt > toCall) { return { action: "raise", amount: amt }; }
             }
             return { action: "call", amount: toCall };
         }
