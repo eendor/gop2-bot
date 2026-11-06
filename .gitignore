@@ -1,0 +1,5 @@
+*.swf
+*.exe
+*.orig
+*.surge
+dump/
